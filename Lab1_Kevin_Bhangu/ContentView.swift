@@ -22,4 +22,8 @@ struct ContentView: View {
             Text("Is this number prime?")
                 .font(.title)
                 .padding()
+
+            Text("\(number)")
+                .font(.system(size: 80, weight: .bold))
+                .padding()
         }
