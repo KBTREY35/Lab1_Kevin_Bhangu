@@ -97,3 +97,9 @@ struct ContentView: View {
             nextNumber()
         }
     }
+    
+    func nextNumber() {
+        number = Int.random(in: 1...100)
+        showResult = false
+        timerRunning = true
+    }
