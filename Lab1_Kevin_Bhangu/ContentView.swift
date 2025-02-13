@@ -65,3 +65,35 @@ struct ContentView: View {
                 .font(.headline)
                 .padding()
         }
+        .padding()
+        .alert(isPresented: $showDialog) {
+            Alert(title: Text("Game Summary"),
+                  message: Text("Correct: \(correctAnswers)\nWrong: \(wrongAnswers)"),
+                  dismissButton: .default(Text("OK")))
+        }
+        .onAppear {
+            startTimer()
+        }
+    }
+    
+    func checkAnswer(isPrime: Bool) {
+        let correct = isPrime == isPrimeNumber(number)
+        isCorrect = correct
+        showResult = true
+        timerRunning = false
+
+        if correct {
+            correctAnswers += 1
+        } else {
+            wrongAnswers += 1
+        }
+        
+        attempts += 1
+        if attempts % 10 == 0 {
+            showDialog = true
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            nextNumber()
+        }
+    }
