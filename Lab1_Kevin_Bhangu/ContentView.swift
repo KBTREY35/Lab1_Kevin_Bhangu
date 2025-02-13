@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var number: Int = Int.random(in: 1...100)
+    @State private var showResult: Bool = false
+    @State private var isCorrect: Bool = false
+    @State private var correctAnswers: Int = 0
+    @State private var wrongAnswers: Int = 0
+    @State private var attempts: Int = 0
+    @State private var showDialog: Bool = false
+    @State private var timerRunning: Bool = true
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text("Is this number prime?")
+                .font(.title)
+                .padding()
         }
-        .padding()
-    }
-}
-
-#Preview {
-    ContentView()
-}
