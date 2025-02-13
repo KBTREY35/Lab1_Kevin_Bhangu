@@ -58,4 +58,10 @@ struct ContentView: View {
                     .foregroundColor(isCorrect ? .green : .red)
                     .transition(.opacity)
             }
-
+            
+            Spacer()
+            
+            Text("Correct: \(correctAnswers) | Wrong: \(wrongAnswers)")
+                .font(.headline)
+                .padding()
+        }
