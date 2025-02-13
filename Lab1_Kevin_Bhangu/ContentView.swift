@@ -103,3 +103,13 @@ struct ContentView: View {
         showResult = false
         timerRunning = true
     }
+    
+    func isPrimeNumber(_ num: Int) -> Bool {
+        if num < 2 { return false }
+        for i in 2..<num {
+            if num % i == 0 {
+                return false
+            }
+        }
+        return true
+    }
