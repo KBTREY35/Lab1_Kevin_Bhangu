@@ -22,7 +22,7 @@ struct ContentView: View {
             Text("Is this number prime?")
                 .font(.title)
                 .padding()
-            
+
             Text("\(number)")
                 .font(.system(size: 80, weight: .bold))
                 .padding()
@@ -38,7 +38,7 @@ struct ContentView: View {
                         .cornerRadius(12)
                 }
                 .padding()
-                
+
                 Button(action: { checkAnswer(isPrime: false) }) {
                     Text("Not Prime")
                         .font(.title)
@@ -50,4 +50,12 @@ struct ContentView: View {
                 }
                 .padding()
             }
-        }
+
+            if showResult {
+                Image(systemName: isCorrect ? "checkmark.circle.fill" : "xmark.circle.fill")
+                    .resizable()
+                    .frame(width: 80, height: 80)
+                    .foregroundColor(isCorrect ? .green : .red)
+                    .transition(.opacity)
+            }
+
