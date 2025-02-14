@@ -109,7 +109,10 @@ struct ContentView: View {
         
         func isPrimeNumber(_ num: Int) -> Bool {
             if num < 2 { return false }
-            for i in 2..<num {
+            if num == 2 { return true }
+            if num % 2 == 0 { return false }
+
+            for i in stride(from: 3, to: Int(sqrt(Double(num))) + 1, by: 2) {
                 if num % i == 0 {
                     return false
                 }
