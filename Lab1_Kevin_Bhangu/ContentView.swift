@@ -16,7 +16,8 @@ struct ContentView: View {
     @State private var attempts: Int = 0
     @State private var showDialog: Bool = false
     @State private var timerRunning: Bool = true
-    
+    @State private var userHasAnswered: Bool = false
+
     var body: some View {
         VStack {
             Text("Is this number prime?")
