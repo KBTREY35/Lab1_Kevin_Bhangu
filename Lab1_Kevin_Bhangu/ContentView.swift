@@ -19,40 +19,40 @@ struct ContentView: View {
     @State private var userHasAnswered: Bool = false
     
     var body: some View {
-        VStack {
+        VStack(spacing: 20) {
             Text("Is this number prime?")
-                .font(.largeTitle)
-                .bold()
-                .padding()
+            .font(.largeTitle)
+            .bold()
+            .padding()
 
             Text("\(number)")
-                .font(.system(size: 80, weight: .bold))
-                .padding(
-          
-            HStack(spacing: 40) {
-                Button(action: { checkAnswer(isPrime: true) }) {
-                    Text("Prime")
-                        .font(.title)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(12)
-                }
-                .padding()
+            .font(.system(size: 80, weight: .bold))
+            .padding()
 
-                Button(action: { checkAnswer(isPrime: false) }) {
-                    Text("Not Prime")
-                        .font(.title)
+            HStack(spacing: 40) {
+            Button(action: { checkAnswer(isPrime: true) }) {
+                Text("Prime")
+                    .font(.title)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(12)
+                        }
                         .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.orange)
-                        .foregroundColor(.white)
-                        .cornerRadius(12)
-                }
-                .padding()
-            }
-            
+
+            Button(action: { checkAnswer(isPrime: false) }) {
+                Text("Not Prime")
+                    .font(.title)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.orange)
+                    .foregroundColor(.white)
+                    .cornerRadius(12)
+                        }
+                        .padding()
+                    }
+
             if showResult {
                 Image(systemName: isCorrect ? "checkmark.circle.fill" : "xmark.circle.fill")
                     .resizable()
