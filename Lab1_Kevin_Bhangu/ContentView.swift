@@ -78,27 +78,27 @@ struct ContentView: View {
     }
     
     func checkAnswer(isPrime: Bool) {
-        let correct = isPrime == isPrimeNumber(number)
-        isCorrect = correct
-        showResult = true
-        timerRunning = false
+           userHasAnswered = true
+           let correct = isPrime == isPrimeNumber(number)
+           isCorrect = correct
+           showResult = true
+           timerRunning = false
 
-        if correct {
-            correctAnswers += 1
-        } else {
-            wrongAnswers += 1
-        }
-        
-        attempts += 1
-        if attempts % 10 == 0 {
-            showDialog = true
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            nextNumber()
-        }
-    }
-    
+           if correct {
+               correctAnswers += 1
+           } else {
+               wrongAnswers += 1
+           }
+
+           attempts += 1
+           if attempts % 10 == 0 {
+               showDialog = true
+           }
+
+           DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+               nextNumber()
+           }
+
     func nextNumber() {
         number = Int.random(in: 1...100)
         showResult = false
