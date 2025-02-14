@@ -21,9 +21,10 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Text("Is this number prime?")
-                .font(.title)
+                .font(.largeTitle)
+                .bold()
                 .padding()
-            
+
             Text("\(number)")
                 .font(.system(size: 80, weight: .bold))
                 .padding(
