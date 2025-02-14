@@ -66,7 +66,9 @@ struct ContentView: View {
             
             Text("Correct: \(correctAnswers) | Wrong: \(wrongAnswers)")
                 .font(.headline)
+                .frame(maxWidth: .infinity, alignment: .center)
                 .padding()
+
         }
         .padding()
         .alert(isPresented: $showDialog) {
