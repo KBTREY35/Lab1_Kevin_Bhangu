@@ -17,13 +17,13 @@ struct ContentView: View {
     @State private var showDialog: Bool = false
     @State private var timerRunning: Bool = true
     @State private var userHasAnswered: Bool = false
-
+    
     var body: some View {
         VStack {
             Text("Is this number prime?")
                 .font(.title)
                 .padding()
-
+            
             Text("\(number)")
                 .font(.system(size: 80, weight: .bold))
                 .padding()
@@ -39,7 +39,7 @@ struct ContentView: View {
                         .cornerRadius(12)
                 }
                 .padding()
-
+                
                 Button(action: { checkAnswer(isPrime: false) }) {
                     Text("Not Prime")
                         .font(.title)
@@ -51,7 +51,7 @@ struct ContentView: View {
                 }
                 .padding()
             }
-
+            
             if showResult {
                 Image(systemName: isCorrect ? "checkmark.circle.fill" : "xmark.circle.fill")
                     .resizable()
@@ -78,51 +78,60 @@ struct ContentView: View {
     }
     
     func checkAnswer(isPrime: Bool) {
-           userHasAnswered = true
-           let correct = isPrime == isPrimeNumber(number)
-           isCorrect = correct
-           showResult = true
-           timerRunning = false
-
-           if correct {
-               correctAnswers += 1
-           } else {
-               wrongAnswers += 1
-           }
-
-           attempts += 1
-           if attempts % 10 == 0 {
-               showDialog = true
-           }
-
-           DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-               nextNumber()
-           }
-
-    func nextNumber() {
-        number = Int.random(in: 1...100)
-        showResult = false
-        timerRunning = true
-    }
-    
-    func isPrimeNumber(_ num: Int) -> Bool {
-        if num < 2 { return false }
-        for i in 2..<num {
-            if num % i == 0 {
-                return false
-            }
+        userHasAnswered = true
+        let correct = isPrime == isPrimeNumber(number)
+        isCorrect = correct
+        showResult = true
+        timerRunning = false
+        
+        if correct {
+            correctAnswers += 1
+        } else {
+            wrongAnswers += 1
         }
-        return true
-    }
-    
-    func startTimer() {
-        Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
-            if timerRunning {
-                wrongAnswers += 1
-                nextNumber()
+        
+        attempts += 1
+        if attempts % 10 == 0 {
+            showDialog = true
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            nextNumber()
+        }
+        
+        func nextNumber() {
+            number = Int.random(in: 1...100)
+            showResult = false
+            timerRunning = true
+        }
+        
+        func isPrimeNumber(_ num: Int) -> Bool {
+            if num < 2 { return false }
+            for i in 2..<num {
+                if num % i == 0 {
+                    return false
+                }
+            }
+            return true
+        }
+        
+        func startTimer() {
+            Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
+                if timerRunning && !userHasAnswered {
+                    wrongAnswers += 1
+                    attempts += 1
+                    
+                    if attempts % 10 == 0 {
+                        showDialog = true
+                    }
+                    
+                    nextNumber()
+                }
             }
         }
     }
 }
+
+
 
 
