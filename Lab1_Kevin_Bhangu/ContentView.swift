@@ -26,26 +26,26 @@ struct ContentView: View {
             
             Text("\(number)")
                 .font(.system(size: 80, weight: .bold))
-                .padding()
-            
-            HStack {
+                .padding(
+          
+            HStack(spacing: 40) {
                 Button(action: { checkAnswer(isPrime: true) }) {
                     Text("Prime")
                         .font(.title)
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(Color.green)
+                        .background(Color.blue)
                         .foregroundColor(.white)
                         .cornerRadius(12)
                 }
                 .padding()
-                
+
                 Button(action: { checkAnswer(isPrime: false) }) {
                     Text("Not Prime")
                         .font(.title)
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(Color.red)
+                        .background(Color.orange)
                         .foregroundColor(.white)
                         .cornerRadius(12)
                 }
